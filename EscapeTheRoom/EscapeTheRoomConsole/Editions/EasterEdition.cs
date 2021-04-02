@@ -21,7 +21,8 @@ namespace EscapeTheRoomConsole.Editions
                 and in the room bind them...
 
                 Page 746, Paragraph 3, Line 3, last Word", "basket"),
-            new Question("Where does the Easter Bunny eat breakfast?", "IHOP"),
+            new Question(@"
+                Where does the Easter Bunny eat breakfast?", "IHOP"),
         };
 
         public EasterEdition() : base(_questions, "The Easter Bunny Is Real", 3) { }

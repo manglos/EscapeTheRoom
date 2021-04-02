@@ -22,6 +22,7 @@ namespace EscapeTheRoomConsole.Editions
 
         public void Run()
         {
+            Console.Clear();
             Console.WriteLine("Press Enter...");
             Console.ReadLine();
             Console.Clear();
@@ -59,12 +60,14 @@ namespace EscapeTheRoomConsole.Editions
 
         private void ShowInstructions()
         {
-            Console.WriteLine($"I'm going to ask you a series of questions. If you answer all the questions correctly, you will be given a code with which you can ESCAPE THE ROOM. However, if you fail to answer all the questions correctly before using your {_maximumIncorrectAllowed} incorrect guesses, you will NEVER BE ALLOWED TO LEAVE.", Color.Red);
+            var soundPlayer = new SoundPlayer("Sounds/instructions.wav");
+            soundPlayer.Play();
+            Console.WriteLine($"I'm going to ask you a bunch of questions. If you answer all the questions correctly, you will be given a passcode with which you can ESCAPE THE ROOM. However, if you fail to answer all the questions correctly before using your {_maximumIncorrectAllowed} incorrect guesses, you will NEVER BE ALLOWED TO LEAVE.", Color.Red);
         }
 
         private void ShowFailureBanner()
         {
-            var soundPlayer = new SoundPlayer("Sounds/scream.wav");
+            var soundPlayer = new SoundPlayer("Sounds/failure.wav");
             soundPlayer.Play();
             Console.WriteLine(@"
     ▄██   ▄    ▄██████▄  ███    █▄          ▄████████    ▄████████  ▄█   ▄█          ▄████████ ████████▄  
@@ -94,7 +97,7 @@ namespace EscapeTheRoomConsole.Editions
                  ", Color.Green);
             Thread.Sleep(2000);
 
-            Console.Write($"Your code is: ");
+            Console.Write($"The passcode is: ");
             Console.WriteLine(_escapeCode, Color.Green);
         }
 
@@ -104,47 +107,55 @@ namespace EscapeTheRoomConsole.Editions
 
             for(var i = 0; i < _questions.Count; i++)
             {
-                var question = _questions[i];
-
                 if (numberOfIncorrectAnswers >= _maximumIncorrectAllowed)
                 {
                     return false;
                 }
 
-                Thread.Sleep(500);
+                var question = _questions[i];
+                var numberOfGuessesLeft = _maximumIncorrectAllowed - numberOfIncorrectAnswers;
+                Console.Clear();
+                var soundPlayer = new SoundPlayer("Sounds/thinking.wav");
+                soundPlayer.PlayLooping();
+                Console.WriteLine($"Question {i + 1} of {_questions.Count}.", Color.Tan);
+                Thread.Sleep(1000);
+                Console.WriteLine($"You {(numberOfGuessesLeft == 1 ? "only" : "still")} have {numberOfGuessesLeft} incorrect {(numberOfGuessesLeft == 1 ? "guess" : "guesses")} left.", (numberOfGuessesLeft == 1 ? Color.Red : Color.Tan));
+                Thread.Sleep(1500);
+
                 Console.WriteLine($"{question.QuestionMessage}:");
                 var input = Console.ReadLine();
 
+                Thread.Sleep(2000);
                 if (question.IsCorrect(input))
                 {
-                    ShowCorrectAnswerMessage(_questions.Count - i - 1);
+                    ShowCorrectAnswerMessage();
                     continue;
                 }
 
                 numberOfIncorrectAnswers++;
-                ShowIncorrectAnswerMessage(numberOfIncorrectAnswers);
+                ShowIncorrectAnswerMessage();
                 i--;
             }
 
             return true;
         }
 
-        private void ShowCorrectAnswerMessage(int numberOfQuestionsLeft)
+        private void ShowCorrectAnswerMessage()
         {
             Thread.Sleep(500);
-            
-            if (numberOfQuestionsLeft == 0)
-            {
-                return;
-            }
-
-            Console.WriteLine($"That is correct. {numberOfQuestionsLeft} questions left", Color.Green);
+            var soundPlayer = new SoundPlayer("Sounds/correct.wav");
+            soundPlayer.Play();
+            Console.WriteLine($"That is correct.", Color.Green);
+            Thread.Sleep(4000);
         }
 
-        private void ShowIncorrectAnswerMessage(int numberOfIncorrectAnswers)
+        private void ShowIncorrectAnswerMessage()
         {
             Thread.Sleep(500);
-            Console.WriteLine($"That is not correct. You have {_maximumIncorrectAllowed - numberOfIncorrectAnswers} incorrect guesses left.", Color.Red);
+            var soundPlayer = new SoundPlayer("Sounds/incorrect.wav");
+            soundPlayer.Play();
+            Console.WriteLine($"That is not correct.", Color.Red);
+            Thread.Sleep(4000);
         }
 
         private void ShowWelcomeMessage()
