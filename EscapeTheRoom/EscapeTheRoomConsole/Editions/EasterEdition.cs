@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Media;
 
 namespace EscapeTheRoomConsole.Editions
 {
@@ -9,18 +11,19 @@ namespace EscapeTheRoomConsole.Editions
             new Question("What is 1?", "1"),
             new Question("What is 2?", "2"),
             new Question("What is 3?", "3"),
-
         };
 
-        public EasterEdition() : base(_questions, 3) { }
+        public EasterEdition() : base(_questions, "The Easter Bunny Is Real", 3) { }
 
-        public override string GetEditionWelcomeBanner()
+        public override void ShowEditionWelcomeBanner()
         {
-            return @"
+            var soundPlayer = new SoundPlayer("Sounds/ding.wav");
+            soundPlayer.Play();
+            Colorful.Console.WriteLine(@"
  ____   __   ____  ____  ____  ____    ____  ____  __  ____  __  __   __ _ 
 (  __) / _\ / ___)(_  _)(  __)(  _ \  (  __)(    \(  )(_  _)(  )/  \ (  ( \
  ) _) /    \\___ \  )(   ) _)  )   /   ) _)  ) D ( )(   )(   )((  O )/    /
-(____)\_/\_/(____/ (__) (____)(__\_)  (____)(____/(__) (__) (__)\__/ \_)__)";
+(____)\_/\_/(____/ (__) (____)(__\_)  (____)(____/(__) (__) (__)\__/ \_)__)", Color.HotPink);
         }
     }
 }
