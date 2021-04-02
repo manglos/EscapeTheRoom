@@ -8,9 +8,20 @@ namespace EscapeTheRoomConsole.Editions
     {
         private static List<Question> _questions = new List<Question>
         {
-            new Question("What is 1?", "1"),
-            new Question("What is 2?", "2"),
-            new Question("What is 3?", "3"),
+            new Question(@"
+                I am round but I won't bounce.
+                I am clear but I won't break.
+                I am hidden inside eggs, but I'm not candy.
+
+                How many of me are there in the room?", "6"),
+            new Question(@"
+                One book to rule them all,
+                one book to find them,
+                One book to bring them all,
+                and in the room bind them...
+
+                Page 746, Paragraph 3, Line 3, last Word", "basket"),
+            new Question("Where does the Easter Bunny eat breakfast?", "IHOP"),
         };
 
         public EasterEdition() : base(_questions, "The Easter Bunny Is Real", 3) { }
