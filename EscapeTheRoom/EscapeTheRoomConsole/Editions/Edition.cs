@@ -33,11 +33,9 @@ namespace EscapeTheRoomConsole.Editions
 
             Console.Clear();
 
-            ShowWelcomeMessage();
-
             ShowInstructions();
 
-            Thread.Sleep(10000);
+            Thread.Sleep(2000);
             Console.WriteLine("Press enter to begin...");
             Console.ReadLine();
             Console.Clear();
@@ -62,7 +60,20 @@ namespace EscapeTheRoomConsole.Editions
         {
             var soundPlayer = new SoundPlayer("Sounds/instructions.wav");
             soundPlayer.Play();
-            Console.WriteLine($"I'm going to ask you a bunch of questions. If you answer all the questions correctly, you will be given a passcode with which you can ESCAPE THE ROOM. However, if you fail to answer all the questions correctly before using your {_maximumIncorrectAllowed} incorrect guesses, you will NEVER BE ALLOWED TO LEAVE.", Color.Red);
+            Type("I'm going to ask you a bunch of questions.", Color.Red);
+            Type("If you answer all the questions correctly, you will be given a passcode with which you can ESCAPE THE ROOM.", Color.Red);
+            Type($"However, if you fail to answer all the questions correctly before using your {_maximumIncorrectAllowed} incorrect guesses, you will NEVER BE ALLOWED TO LEAVE.", Color.Red);
+        }
+
+        private void Type(string text, Color color)
+        {
+            foreach(var character in text)
+            {
+                Console.Write(character, color);
+                Thread.Sleep(character.Equals(' ') ? 10 : 50);
+            }
+
+            Console.WriteLine();
         }
 
         private void ShowFailureBanner()
@@ -70,15 +81,12 @@ namespace EscapeTheRoomConsole.Editions
             var soundPlayer = new SoundPlayer("Sounds/failure.wav");
             soundPlayer.Play();
             Console.WriteLine(@"
-    ▄██   ▄    ▄██████▄  ███    █▄          ▄████████    ▄████████  ▄█   ▄█          ▄████████ ████████▄  
-    ███   ██▄ ███    ███ ███    ███        ███    ███   ███    ███ ███  ███         ███    ███ ███   ▀███ 
-    ███▄▄▄███ ███    ███ ███    ███        ███    █▀    ███    ███ ███▌ ███         ███    █▀  ███    ███ 
-    ▀▀▀▀▀▀███ ███    ███ ███    ███       ▄███▄▄▄       ███    ███ ███▌ ███        ▄███▄▄▄     ███    ███ 
-    ▄██   ███ ███    ███ ███    ███      ▀▀███▀▀▀     ▀███████████ ███▌ ███       ▀▀███▀▀▀     ███    ███ 
-    ███   ███ ███    ███ ███    ███        ███          ███    ███ ███  ███         ███    █▄  ███    ███ 
-    ███   ███ ███    ███ ███    ███        ███          ███    ███ ███  ███▌    ▄   ███    ███ ███   ▄███ 
-     ▀█████▀   ▀██████▀  ████████▀         ███          ███    █▀  █▀   █████▄▄██   ██████████ ████████▀  
-                                                                        ▀                                 
+    ██╗   ██╗ ██████╗ ██╗   ██╗    ███████╗ █████╗ ██╗██╗     ███████╗██████╗ 
+    ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██╔════╝██╔══██╗██║██║     ██╔════╝██╔══██╗
+     ╚████╔╝ ██║   ██║██║   ██║    █████╗  ███████║██║██║     █████╗  ██║  ██║
+      ╚██╔╝  ██║   ██║██║   ██║    ██╔══╝  ██╔══██║██║██║     ██╔══╝  ██║  ██║
+       ██║   ╚██████╔╝╚██████╔╝    ██║     ██║  ██║██║███████╗███████╗██████╔╝
+       ╚═╝    ╚═════╝  ╚═════╝     ╚═╝     ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚═════╝                                                                                                       
     ", Color.Red);
             Thread.Sleep(5000);
         }
@@ -122,8 +130,8 @@ namespace EscapeTheRoomConsole.Editions
                 Console.WriteLine($"You {(numberOfGuessesLeft == 1 ? "only" : "still")} have {numberOfGuessesLeft} incorrect {(numberOfGuessesLeft == 1 ? "guess" : "guesses")} left.", (numberOfGuessesLeft == 1 ? Color.Red : Color.Tan));
                 Thread.Sleep(1500);
 
-                Console.WriteLine($"{question.QuestionMessage}:");
-                var input = Console.ReadLine();
+                Type(question.QuestionMessage, Color.White);
+                var input = GetValidInput();
 
                 Thread.Sleep(2000);
                 if (question.IsCorrect(input))
@@ -138,6 +146,18 @@ namespace EscapeTheRoomConsole.Editions
             }
 
             return true;
+        }
+
+        private string GetValidInput()
+        {
+            var result = string.Empty;
+
+            while (string.IsNullOrEmpty(result))
+            {
+                result = Console.ReadLine();
+            }
+
+            return result;
         }
 
         private void ShowCorrectAnswerMessage()
@@ -162,7 +182,6 @@ namespace EscapeTheRoomConsole.Editions
         {
             var messageBuilder = new StringBuilder();
             messageBuilder.AppendLine("Do you think you have what it takes to Escape the Room??");
-
         }
 
         private void ShowWelcomeBanner()
