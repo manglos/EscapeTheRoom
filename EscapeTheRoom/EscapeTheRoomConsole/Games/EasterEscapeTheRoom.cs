@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Media;
 
-namespace EscapeTheRoomConsole.Editions
+namespace EscapeTheRoomConsole.Games
 {
-    public class EasterEdition : Edition
+    public class EasterEscapeTheRoom : EscapeTheRoom
     {
         private static List<Question> _questions = new List<Question>
         {
@@ -25,17 +25,17 @@ namespace EscapeTheRoomConsole.Editions
                 Where does the Easter Bunny eat breakfast?", "IHOP"),
         };
 
-        public EasterEdition() : base(_questions, "The Easter Bunny Is Real", 3) { }
+        public EasterEscapeTheRoom() : base(_questions, "The Easter Bunny Is Real", 3) { }
 
         public override void ShowEditionWelcomeBanner()
         {
             var soundPlayer = new SoundPlayer("Sounds/ding.wav");
             soundPlayer.Play();
-            Colorful.Console.WriteLine(@"
+            ColorfulConsole.WriteLine(@"
  ____   __   ____  ____  ____  ____    ____  ____  __  ____  __  __   __ _ 
 (  __) / _\ / ___)(_  _)(  __)(  _ \  (  __)(    \(  )(_  _)(  )/  \ (  ( \
  ) _) /    \\___ \  )(   ) _)  )   /   ) _)  ) D ( )(   )(   )((  O )/    /
-(____)\_/\_/(____/ (__) (____)(__\_)  (____)(____/(__) (__) (__)\__/ \_)__)", Color.HotPink);
+(____)\_/\_/(____/ (__) (____)(__\_)  (____)(____/(__) (__) (__)\__/ \_)__)", System.ConsoleColor.Magenta);
         }
     }
 }

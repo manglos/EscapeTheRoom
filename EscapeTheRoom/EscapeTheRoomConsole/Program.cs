@@ -1,4 +1,4 @@
-﻿using EscapeTheRoomConsole.Editions;
+﻿using EscapeTheRoomConsole.Games;
 
 namespace EscapeRoom
 {
@@ -6,8 +6,7 @@ namespace EscapeRoom
     {
         static void Main(string[] args)
         {
-            var game = new EasterEdition();
-            game.Run();
+            new EasterScavengerHunt().Run();
         }
     }
 }
