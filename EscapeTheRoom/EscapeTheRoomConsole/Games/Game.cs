@@ -81,7 +81,7 @@ namespace EscapeTheRoomConsole.Games
                 ColorfulConsole.WriteLine($"You {(numberOfGuessesLeft == 1 ? "only" : "still")} have {numberOfGuessesLeft} incorrect {(numberOfGuessesLeft == 1 ? "guess" : "guesses")} left.", (numberOfGuessesLeft == 1 ? System.ConsoleColor.Red : System.ConsoleColor.DarkYellow));
                 Thread.Sleep(1500);
 
-                Type(question.QuestionMessage, System.ConsoleColor.White);
+                TypeLine(question.QuestionMessage, System.ConsoleColor.White);
                 var input = GetValidInput();
 
                 Thread.Sleep(2000);
@@ -106,7 +106,10 @@ namespace EscapeTheRoomConsole.Games
                 ColorfulConsole.Write(character, color);
                 Thread.Sleep(character.Equals(' ') ? 10 : 50);
             }
-
+        }
+        protected void TypeLine(string text, System.ConsoleColor color)
+        {
+            Type(text, color);
             ColorfulConsole.WriteLine();
         }
 

@@ -21,11 +21,22 @@ namespace EscapeTheRoomConsole.Games
         {
             var soundPlayer = new SoundPlayer("Sounds/riddle.wav");
             soundPlayer.Play();
-            Type("I'm going to ask you some riddles.", System.ConsoleColor.Yellow);
-            Type("Each riddle will lead you to a location with an egg.", System.ConsoleColor.Yellow);
-            Type("Each egg will have a piece of a code which you will need to type in.", System.ConsoleColor.Yellow);
-            Type("If you type in each piece of code correctly, I will give you a final riddle which will lead you to an AWESOME GIFT!", System.ConsoleColor.Green);
-            Type($"However, If you fail to enter all the pieces of the code correctly before using your {_maximumIncorrectAllowed} incorrect guesses, you will GET NOTHING!", System.ConsoleColor.Red);
+            Type("I'm going to ask you some ", System.ConsoleColor.Yellow);
+            TypeLine("riddles.", System.ConsoleColor.Blue);
+            
+            Type("Each riddle will lead you to a ", System.ConsoleColor.Yellow); 
+            Type("location ", System.ConsoleColor.Blue); 
+            TypeLine("with an egg.", System.ConsoleColor.Yellow);
+
+            Type("Each egg will have a ", System.ConsoleColor.Yellow);
+            Type("piece of a code ", System.ConsoleColor.Blue);
+            TypeLine("which you will need to type in.", System.ConsoleColor.Yellow);
+
+            Type("If you type in each piece of code correctly, I will give you a ", System.ConsoleColor.Green);
+            Type("final riddle ", System.ConsoleColor.Blue);
+            TypeLine("which will lead you to an AWESOME GIFT!", System.ConsoleColor.Green);
+
+            TypeLine($"However, If you fail to enter all the pieces of the code correctly before using your {_maximumIncorrectAllowed} incorrect guesses, you will GET NOTHING!", System.ConsoleColor.Red);
             soundPlayer = new SoundPlayer("Sounds/laugh.wav");
             soundPlayer.Play();
         }
@@ -33,10 +44,10 @@ namespace EscapeTheRoomConsole.Games
         protected override void ShowSuccessMessage()
         {
             ColorfulConsole.Clear();
-            Type("Congratulations, I will now tell you the final riddle...", System.ConsoleColor.Green);
+            TypeLine("Congratulations, I will now tell you the final riddle...", System.ConsoleColor.Green);
             Thread.Sleep(3000);
             ColorfulConsole.Clear();
-            Type(_finalRiddle, System.ConsoleColor.Blue);
+            TypeLine(_finalRiddle, System.ConsoleColor.Blue);
         }
 
         protected override void ShowWelcomeBanner()

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using System.Drawing;
 using System.Media;
 
 namespace EscapeTheRoomConsole.Games
@@ -20,9 +19,9 @@ namespace EscapeTheRoomConsole.Games
         {
             var soundPlayer = new SoundPlayer("Sounds/instructions.wav");
             soundPlayer.Play();
-            Type("I'm going to ask you a bunch of questions.", System.ConsoleColor.Red);
-            Type("If you answer all the questions correctly, you will be given a passcode with which you can ESCAPE THE ROOM.", System.ConsoleColor.Red);
-            Type($"However, if you fail to answer all the questions correctly before using your {_maximumIncorrectAllowed} incorrect guesses, you will NEVER BE ALLOWED TO LEAVE.", System.ConsoleColor.Red);
+            TypeLine("I'm going to ask you a bunch of questions.", System.ConsoleColor.Red);
+            TypeLine("If you answer all the questions correctly, you will be given a passcode with which you can ESCAPE THE ROOM.", System.ConsoleColor.Red);
+            TypeLine($"However, if you fail to answer all the questions correctly before using your {_maximumIncorrectAllowed} incorrect guesses, you will NEVER BE ALLOWED TO LEAVE.", System.ConsoleColor.Red);
         }
 
         protected override void ShowSuccessMessage()
