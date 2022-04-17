@@ -23,7 +23,7 @@ namespace EscapeTheRoomConsole.Games
                 When it's cold out, don't forget
                 Your hat and mittens.
                 This also could be
-                a bed for a kitten.", "you"),
+                a bed for a kitten.", "our"),
             new Question(@"
                 I'm out here all day
                 and all through the night.
@@ -32,12 +32,12 @@ namespace EscapeTheRoomConsole.Games
                 I have four legs, 
                 but zero bones.
                 My friend and I protect you
-                when you are at home.", "sweet"),
+                when you are at home.", "amazing"),
             new Question(@"
                 When it comes to decorations,
                 I'm a one-stop-shop.
                 But I have to admit:
-                it's lonely at the top.", "girls"),
+                it's lonely at the top.", "daughters"),
         };
         private static string _finalRiddle = @"
                 Turn me on when you leave
