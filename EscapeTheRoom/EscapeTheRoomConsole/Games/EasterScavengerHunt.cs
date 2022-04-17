@@ -13,17 +13,17 @@ namespace EscapeTheRoomConsole.Games
                 Some games are fun
                 while others seem cursed.
                 This game, by far,
-                is definitely the worst.", "My"),
+                is definitely the worst.", "We"),
             new Question(@"
                 You can gather around me
                 the whole family together,
                 and though I am hot
-                I'm not great in cold weather.", "dad"),
+                I'm not great in cold weather.", "love"),
             new Question(@"
                 When it's cold out, don't forget
                 Your hat and mittens.
-                Or sometimes could be
-                A bed for a kitten.", "is"),
+                This also could be
+                a bed for a kitten.", "you"),
             new Question(@"
                 I'm out here all day
                 and all through the night.
@@ -32,12 +32,12 @@ namespace EscapeTheRoomConsole.Games
                 I have four legs, 
                 but zero bones.
                 My friend and I protect you
-                when you are at home.", "a"),
+                when you are at home.", "sweet"),
             new Question(@"
                 When it comes to decorations,
                 I'm a one-stop-shop.
                 But I have to admit:
-                it's lonely at the top.", "genius"),
+                it's lonely at the top.", "girls"),
         };
         private static string _finalRiddle = @"
                 Turn me on when you leave
