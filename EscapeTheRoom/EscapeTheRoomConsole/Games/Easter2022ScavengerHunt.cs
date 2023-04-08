@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace EscapeTheRoomConsole.Games
 {
-    public class EasterScavengerHunt : ScavengerHunt
+    public class Easter2022ScavengerHunt : EggScavengerHunt
     {
         private static List<Question> _questions = new List<Question>
         {
@@ -45,7 +45,7 @@ namespace EscapeTheRoomConsole.Games
                 I have four wheels...
                 No wait! I have five.";
 
-        public EasterScavengerHunt() : base(_questions, _finalRiddle, 5) { }
+        public Easter2022ScavengerHunt() : base(_questions, _finalRiddle, 5) { }
 
         public override void ShowEditionWelcomeBanner()
         {

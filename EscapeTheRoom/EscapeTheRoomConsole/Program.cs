@@ -6,7 +6,7 @@ namespace EscapeRoom
     {
         static void Main(string[] args)
         {
-            new EasterScavengerHunt().Run();
+            new Easter2023ScavengerHunt().Run();
         }
     }
 }

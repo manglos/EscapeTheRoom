@@ -9,12 +9,14 @@ namespace EscapeTheRoomConsole.Games
     public abstract class ScavengerHunt : Game
     {
         private int _maximumIncorrectAllowed;
+        private readonly string _thingBeingFound;
         private string _finalRiddle;
 
-        public ScavengerHunt(List<Question> riddles, string finalRiddle, int maximumIncorrectAllowed) : base(riddles, maximumIncorrectAllowed, QuestionType.Riddle)
+        public ScavengerHunt(List<Question> riddles, string finalRiddle, int maximumIncorrectAllowed, string thingBeingFound) : base(riddles, maximumIncorrectAllowed, QuestionType.Riddle)
         {
             _finalRiddle = finalRiddle;
             _maximumIncorrectAllowed = maximumIncorrectAllowed;
+            _thingBeingFound = thingBeingFound;
         }
 
         protected override void ShowInstructions()
@@ -26,9 +28,9 @@ namespace EscapeTheRoomConsole.Games
             
             Type("Each riddle will lead you to a ", System.ConsoleColor.Yellow); 
             Type("location ", System.ConsoleColor.Blue); 
-            TypeLine("with an egg.", System.ConsoleColor.Yellow);
+            TypeLine($"with an {_thingBeingFound}.", System.ConsoleColor.Yellow);
 
-            Type("Each egg will have a ", System.ConsoleColor.Yellow);
+            Type($"Each {_thingBeingFound} will have a ", System.ConsoleColor.Yellow);
             Type("piece of a code ", System.ConsoleColor.Blue);
             TypeLine("which you will need to type in.", System.ConsoleColor.Yellow);
 
