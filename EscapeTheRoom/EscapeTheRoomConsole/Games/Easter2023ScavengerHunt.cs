@@ -41,10 +41,10 @@ namespace EscapeTheRoomConsole.Games
         };
 
         private static string _finalRiddle = @"
-                Turn me on when you leave
-                and off when you arrive.
-                I have four wheels...
-                No wait! I have five.";
+                We've always been best friends
+                We're birds of a feather
+                So we made a nest
+                Where you prepare for cold weather";
 
         public Easter2023ScavengerHunt() : base(_questions, _finalRiddle, 5) { }
 
@@ -57,7 +57,7 @@ namespace EscapeTheRoomConsole.Games
                 |   __|___ ___| |_ ___ ___   |_  |   |_  |_  |  |   __|_| |_| |_|_|___ ___ 
                 |   __| .'|_ -|  _| -_|  _|  |  _| | |  _|_  |  |   __| . | |  _| | . |   |
                 |_____|__,|___|_| |___|_|    |___|___|___|___|  |_____|___|_|_| |_|___|_|_|
-                                                                                           ", System.ConsoleColor.Magenta);
+                                                                                           ", System.ConsoleColor.Green);
             Thread.Sleep(2000);
         }
 
