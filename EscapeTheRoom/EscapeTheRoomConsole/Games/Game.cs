@@ -62,7 +62,14 @@ namespace EscapeTheRoomConsole.Games
 
         private bool AskQuestions()
         {
+            var songsByIndex = new Dictionary<int, string>()
+            {
+                {0, "girlsjustwanna.wav" },
+                {1, "underpressure.wav" },
+                {2, "africa.wav" }
+            };
             var numberOfIncorrectAnswers = 0;
+
 
             for (var i = 0; i < _questions.Count; i++)
             {
@@ -74,7 +81,7 @@ namespace EscapeTheRoomConsole.Games
                 var question = _questions[i];
                 var numberOfGuessesLeft = _maximumIncorrectAllowed - numberOfIncorrectAnswers;
                 ColorfulConsole.Clear();
-                var soundPlayer = new SoundPlayer("Sounds/thinking.wav");
+                var soundPlayer = new SoundPlayer($"Sounds/{songsByIndex[i]}");
                 soundPlayer.PlayLooping();
                 ColorfulConsole.WriteLine($"{_questionType:G} {i + 1} of {_questions.Count}.", System.ConsoleColor.DarkYellow);
                 Thread.Sleep(1000);
@@ -141,13 +148,13 @@ namespace EscapeTheRoomConsole.Games
     ╚██████╔╝╚██████╔╝╚██████╔╝██████╔╝    ╚█████╔╝╚██████╔╝██████╔╝██╗██╗
      ╚═════╝  ╚═════╝  ╚═════╝ ╚═════╝      ╚════╝  ╚═════╝ ╚═════╝ ╚═╝╚═╝
                  ", System.ConsoleColor.Green);
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
         }
 
         protected void ShowAsciiWithSomeGravitas(string text)
         {
             ColorfulConsole.WriteAscii(text);
-            Thread.Sleep(500);
+            Thread.Sleep(2000);
             ColorfulConsole.Clear();
         }
 

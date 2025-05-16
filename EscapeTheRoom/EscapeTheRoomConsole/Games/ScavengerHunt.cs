@@ -10,46 +10,86 @@ namespace EscapeTheRoomConsole.Games
     {
         private int _maximumIncorrectAllowed;
         private readonly string _thingBeingFound;
-        private string _finalRiddle;
 
-        public ScavengerHunt(List<Question> riddles, string finalRiddle, int maximumIncorrectAllowed, string thingBeingFound) : base(riddles, maximumIncorrectAllowed, QuestionType.Riddle)
+        public ScavengerHunt(List<Question> riddles, int maximumIncorrectAllowed, string thingBeingFound) : base(riddles, maximumIncorrectAllowed, QuestionType.Riddle)
         {
-            _finalRiddle = finalRiddle;
             _maximumIncorrectAllowed = maximumIncorrectAllowed;
             _thingBeingFound = thingBeingFound;
         }
 
         protected override void ShowInstructions()
         {
-            var soundPlayer = new SoundPlayer("Sounds/riddle.wav");
-            soundPlayer.Play();
-            Type("I'm going to ask you some ", System.ConsoleColor.Yellow);
-            TypeLine("riddles.", System.ConsoleColor.Blue);
+            //var soundPlayer = new SoundPlayer("Sounds/riddle.wav");
+            //soundPlayer.Play();
+            Type("I'm going to ask you ", System.ConsoleColor.Yellow);
+            TypeLine("3 riddles.", System.ConsoleColor.Blue);
             
             Type("Each riddle will lead you to a ", System.ConsoleColor.Yellow); 
             Type("location ", System.ConsoleColor.Blue); 
-            TypeLine($"with an {_thingBeingFound}.", System.ConsoleColor.Yellow);
+            Type($"with an ", System.ConsoleColor.Yellow);
+            TypeLine($"{_thingBeingFound}.", System.ConsoleColor.Green);
 
             Type($"Each {_thingBeingFound} will have a ", System.ConsoleColor.Yellow);
+            Type("party favor for each of you ", System.ConsoleColor.Blue);
+            TypeLine("which will help prepare you for the party.", System.ConsoleColor.Yellow);
+            Type($"Also, each {_thingBeingFound} will contain a ", System.ConsoleColor.Yellow);
             Type("piece of a code ", System.ConsoleColor.Blue);
             TypeLine("which you will need to type in.", System.ConsoleColor.Yellow);
 
-            Type("If you type in each piece of code correctly, I will give you a ", System.ConsoleColor.Green);
-            Type("final riddle ", System.ConsoleColor.Blue);
-            TypeLine("which will lead you to an AWESOME GIFT!", System.ConsoleColor.Green);
+            Type("Once you type in ", System.ConsoleColor.Green);
+            Type("each piece of code correctly ", System.ConsoleColor.Blue);
+            TypeLine("the BDAY party can BEGIN!", System.ConsoleColor.Green);
 
-            TypeLine($"However, If you fail to enter all the pieces of the code correctly before using your {_maximumIncorrectAllowed} incorrect guesses, you will GET NOTHING!", System.ConsoleColor.Red);
+            TypeLine($"However, If you fail to enter all the pieces of the code correctly before using your {_maximumIncorrectAllowed} incorrect guesses...", System.ConsoleColor.Yellow);
+            TypeLine($"YOU WILL HAVE TO GO HOME!", System.ConsoleColor.Red);
+            var soundPlayer = new SoundPlayer("Sounds/recordscratch.wav");
+            soundPlayer.Play();
+            Thread.Sleep(5000);
             soundPlayer = new SoundPlayer("Sounds/laugh.wav");
             soundPlayer.Play();
+            TypeLine("(jk jk we'll probably just start the party anyway)", System.ConsoleColor.Yellow);
         }
 
         protected override void ShowSuccessMessage()
         {
             ColorfulConsole.Clear();
-            TypeLine("Congratulations, I will now tell you the final riddle...", System.ConsoleColor.Green);
+            var soundPlayer = new SoundPlayer($"Sounds/rickroll.wav");
+            soundPlayer.PlayLooping();
+            TypeLine("Congratulations, you WON!", System.ConsoleColor.Green);
             Thread.Sleep(3000);
             ColorfulConsole.Clear();
-            TypeLine(_finalRiddle, System.ConsoleColor.Blue);
+            ShowAsciiWithSomeGravitas("Let");
+            ShowAsciiWithSomeGravitas("The");
+            ShowAsciiWithSomeGravitas("Party");
+            ShowAsciiWithSomeGravitas("Begin");
+
+            ShowWithLotsOfGravitas(@"
+            ░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓███████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓███████▓▒░ 
+               ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
+               ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
+               ░▒▓█▓▒░   ░▒▓████████▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░ ░▒▓██████▓▒░  
+               ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░ 
+               ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░ 
+               ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░  
+                                                                                            ", System.ConsoleColor.Cyan);
+            ShowWithLotsOfGravitas(@"
+                                ░▒▓████████▓▒░▒▓██████▓▒░░▒▓███████▓▒░  
+                                ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+                                ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+                                ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░  
+                                ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+                                ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+                                ░▒▓█▓▒░      ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░ 
+                                                                        ", System.ConsoleColor.Cyan);
+            ShowWithLotsOfGravitas(@"
+            ░▒▓███████▓▒░░▒▓█▓▒░       ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓███████▓▒░ ░▒▓██████▓▒░  
+            ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+            ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░        
+            ░▒▓███████▓▒░░▒▓█▓▒░      ░▒▓████████▓▒░░▒▓██████▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒▒▓███▓▒░ 
+            ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+            ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
+            ░▒▓█▓▒░      ░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░  
+                                                                                      ", System.ConsoleColor.Cyan);
         }
 
         protected override void ShowWelcomeBanner()
